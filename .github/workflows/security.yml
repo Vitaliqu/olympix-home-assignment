@@ -1,0 +1,41 @@
+name: Security Checks
+
+on:
+  pull_request:
+    paths:
+      - "roundtripguard/**/*.sol"
+      - "roundtripguard/cli/**/*.ts"
+
+jobs:
+  security:
+    name: Forge + CLI Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+
+      - name: Install Node dependencies
+        working-directory: roundtripguard
+        run: npm ci
+
+      - name: forge build
+        working-directory: roundtripguard
+        run: forge build
+
+      - name: forge test
+        working-directory: roundtripguard
+        run: forge test
+
+      - name: CLI audit — MockVulnerablePool must be CRITICAL (exit 1 enforced)
+        working-directory: roundtripguard
+        run: "! npx ts-node cli/scaling-audit.ts --file src/MockVulnerablePool.sol"
+
+      - name: CLI audit — MockFixedPool must be clean (exit 0 required)
+        working-directory: roundtripguard
+        run: npx ts-node cli/scaling-audit.ts --file src/MockFixedPool.sol

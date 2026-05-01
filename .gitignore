@@ -1,0 +1,46 @@
+# ── OS ───────────────────────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+
+# ── IDE ──────────────────────────────────────────────────────────────────────
+.idea/
+.vscode/
+
+# ── Node.js ──────────────────────────────────────────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# ── Next.js (demo/) ──────────────────────────────────────────────────────────
+demo/.next/
+demo/out/
+demo/.vercel/
+
+# ── Foundry (roundtripguard/) ────────────────────────────────────────────────
+roundtripguard/out/
+roundtripguard/cache/
+roundtripguard/broadcast/
+
+# ── Environment variables ─────────────────────────────────────────────────────
+.env
+.env.local
+.env.*.local
+.env.production
+
+# ── AI / local tooling ────────────────────────────────────────────────────────
+CLAUDE.md
+AGENTS.md
+GEMINI.md
+PRODUCT.md
+DESIGN.md
+skills-lock.json
+.claude/
+.worktrees/
+.gitnexus/
+.superpowers/
+.agents/
+docs/superpowers/
+
+# ── Logs / temp ───────────────────────────────────────────────────────────────
+*.log
+alerts.log
